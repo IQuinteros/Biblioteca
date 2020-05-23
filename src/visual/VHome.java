@@ -34,6 +34,8 @@ public class VHome extends javax.swing.JFrame {
         btnCompras = new javax.swing.JButton();
         btnVentas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("App Biblioteca");
@@ -65,6 +67,16 @@ public class VHome extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Biblioteca");
+
+        jMenu1.setText("Cerrar Sesión");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,11 +113,19 @@ public class VHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnArriendosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArriendosActionPerformed
-        // TODO add your handling code here:
+        VArriendos arriendoPage = new VArriendos();
+        arriendoPage.pack();
+        arriendoPage.setLocationRelativeTo(null); 
+        arriendoPage.setVisible(true);
+        this.setEnabled(true);
     }//GEN-LAST:event_btnArriendosActionPerformed
 
     private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
-        // TODO add your handling code here:
+        VCompras compraPage = new VCompras();
+        compraPage.pack();
+        compraPage.setLocationRelativeTo(null); 
+        compraPage.setVisible(true);
+        this.setEnabled(true);
     }//GEN-LAST:event_btnComprasActionPerformed
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
@@ -113,7 +133,20 @@ public class VHome extends javax.swing.JFrame {
         ventaPage.pack();
         ventaPage.setLocationRelativeTo(null); 
         ventaPage.setVisible(true);
+        this.setEnabled(true);
     }//GEN-LAST:event_btnVentasActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        
+        VLogin loginPage = new VLogin();
+        
+        loginPage.pack();
+        loginPage.setLocationRelativeTo(null); 
+        
+        loginPage.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_jMenu1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -159,5 +192,7 @@ public class VHome extends javax.swing.JFrame {
     private javax.swing.JButton btnCompras;
     private javax.swing.JButton btnVentas;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,7 @@
  */
 package biblioteca;
 
-import visual.VHome;
+import visual.*;
 
 /**
  *
@@ -17,12 +17,12 @@ public class index {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        VHome homePage = new VHome();
+        VLogin loginPage = new VLogin();
         
-        homePage.pack();
-        homePage.setLocationRelativeTo(null); 
+        loginPage.pack();
+        loginPage.setLocationRelativeTo(null); 
         
-        homePage.show();
+        loginPage.setVisible(true);
         
     }
     
