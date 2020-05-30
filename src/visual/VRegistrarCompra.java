@@ -89,7 +89,6 @@ public class VRegistrarCompra extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Título");
 
-        jTextField2.setEditable(false);
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField2.setText("Título del Libro bien largo por si acaso");
@@ -103,7 +102,6 @@ public class VRegistrarCompra extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Número de Páginas");
 
-        jTextField4.setEditable(false);
         jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField4.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField4.setText("999999999");
@@ -112,7 +110,6 @@ public class VRegistrarCompra extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("Precio");
 
-        jTextField5.setEditable(false);
         jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField5.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField5.setText("$ 999.999.999");
@@ -126,7 +123,6 @@ public class VRegistrarCompra extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("Año de Publicación");
 
-        jTextField6.setEditable(false);
         jTextField6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField6.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField6.setText("2020");
@@ -135,7 +131,6 @@ public class VRegistrarCompra extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel11.setText("Stock");
 
-        jTextField8.setEditable(false);
         jTextField8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField8.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField8.setText("999999999");
@@ -149,7 +144,6 @@ public class VRegistrarCompra extends javax.swing.JFrame {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel12.setText("Editorial");
 
-        jTextField9.setEditable(false);
         jTextField9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField9.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField9.setText("EDITORIAL NOMBRE LARGO");
@@ -247,7 +241,6 @@ public class VRegistrarCompra extends javax.swing.JFrame {
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel22.setText("Autor");
 
-        jTextField11.setEditable(false);
         jTextField11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField11.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField11.setText("Juan el escritor");
@@ -261,7 +254,6 @@ public class VRegistrarCompra extends javax.swing.JFrame {
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel23.setText("Idioma");
 
-        jTextField15.setEditable(false);
         jTextField15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField15.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField15.setText("Spanglish");
