@@ -45,9 +45,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnClientes" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btn" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="btnTrabajadores" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnVentas3" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="btnDistribuidores" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -75,8 +75,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnClientes" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
-                  <Component id="btn" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
-                  <Component id="btnVentas3" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
+                  <Component id="btnTrabajadores" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
+                  <Component id="btnDistribuidores" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -143,7 +143,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClientesActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btn">
+    <Component class="javax.swing.JButton" name="btnTrabajadores">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Sans" size="14" style="0"/>
@@ -151,10 +151,10 @@
         <Property name="text" type="java.lang.String" value="Trabajadores"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTrabajadoresActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnVentas3">
+    <Component class="javax.swing.JButton" name="btnDistribuidores">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Sans" size="14" style="0"/>
@@ -163,7 +163,7 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVentas3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDistribuidoresActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

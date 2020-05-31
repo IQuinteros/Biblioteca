@@ -8,6 +8,8 @@ package visual;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import visual.Visores.VClientes;
+import visual.Visores.VDistribuidores;
+import visual.Visores.visorTrabajadores;
 
 /**
  *
@@ -36,8 +38,8 @@ public class VHome extends javax.swing.JFrame {
         btnVentas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnClientes = new javax.swing.JButton();
-        btn = new javax.swing.JButton();
-        btnVentas3 = new javax.swing.JButton();
+        btnTrabajadores = new javax.swing.JButton();
+        btnDistribuidores = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
 
@@ -80,20 +82,20 @@ public class VHome extends javax.swing.JFrame {
             }
         });
 
-        btn.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
-        btn.setText("Trabajadores");
-        btn.addActionListener(new java.awt.event.ActionListener() {
+        btnTrabajadores.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        btnTrabajadores.setText("Trabajadores");
+        btnTrabajadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btnTrabajadoresActionPerformed(evt);
             }
         });
 
-        btnVentas3.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
-        btnVentas3.setText("Distribuidores");
-        btnVentas3.setToolTipText("");
-        btnVentas3.addActionListener(new java.awt.event.ActionListener() {
+        btnDistribuidores.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        btnDistribuidores.setText("Distribuidores");
+        btnDistribuidores.setToolTipText("");
+        btnDistribuidores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVentas3ActionPerformed(evt);
+                btnDistribuidoresActionPerformed(evt);
             }
         });
 
@@ -117,9 +119,9 @@ public class VHome extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnVentas3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnDistribuidores, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,8 +143,8 @@ public class VHome extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVentas3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDistribuidores, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,13 +200,21 @@ public class VHome extends javax.swing.JFrame {
         this.setEnabled(true);
     }//GEN-LAST:event_btnClientesActionPerformed
 
-    private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnActionPerformed
+    private void btnTrabajadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrabajadoresActionPerformed
+        visorTrabajadores workerPage = new visorTrabajadores();
+        workerPage.pack();
+        workerPage.setLocationRelativeTo(null);
+        workerPage.setVisible(true);
+        this.setEnabled(true);
+    }//GEN-LAST:event_btnTrabajadoresActionPerformed
 
-    private void btnVentas3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentas3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVentas3ActionPerformed
+    private void btnDistribuidoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDistribuidoresActionPerformed
+        VDistribuidores distributorPage = new VDistribuidores();
+        distributorPage.pack();
+        distributorPage.setLocationRelativeTo(null);
+        distributorPage.setVisible(true);
+        this.setEnabled(true);
+    }//GEN-LAST:event_btnDistribuidoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,12 +256,12 @@ public class VHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn;
     private javax.swing.JButton btnArriendos;
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnCompras;
+    private javax.swing.JButton btnDistribuidores;
+    private javax.swing.JButton btnTrabajadores;
     private javax.swing.JButton btnVentas;
-    private javax.swing.JButton btnVentas3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
