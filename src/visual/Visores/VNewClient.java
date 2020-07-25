@@ -39,10 +39,8 @@ public class VNewClient extends javax.swing.JFrame {
         direccionesList.setModel(direccionModel);
     }
     
-    private void AddElementToModel(DefaultListModel modelRef, String value, String defaultValue){
-        modelRef.removeElement(modelRef.lastElement());
+    private void AddElementToModel(DefaultListModel modelRef, String value){
         modelRef.addElement(value);
-        modelRef.addElement(defaultValue);
         
         UpdateModels();
     }
@@ -79,9 +77,9 @@ public class VNewClient extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         direccionesList = new javax.swing.JList<>();
         btnVenta = new javax.swing.JButton();
-        btnVenta1 = new javax.swing.JButton();
-        btnVenta2 = new javax.swing.JButton();
-        btnVenta3 = new javax.swing.JButton();
+        newCorreo = new javax.swing.JButton();
+        newDireccion = new javax.swing.JButton();
+        newTelefono = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Añadir Cliente");
@@ -182,27 +180,27 @@ public class VNewClient extends javax.swing.JFrame {
             }
         });
 
-        btnVenta1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnVenta1.setText("Nuevo Correo");
-        btnVenta1.addActionListener(new java.awt.event.ActionListener() {
+        newCorreo.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        newCorreo.setText("Nuevo Correo");
+        newCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVenta1ActionPerformed(evt);
+                newCorreoActionPerformed(evt);
             }
         });
 
-        btnVenta2.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnVenta2.setText("Nueva Direccion");
-        btnVenta2.addActionListener(new java.awt.event.ActionListener() {
+        newDireccion.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        newDireccion.setText("Nueva Direccion");
+        newDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVenta2ActionPerformed(evt);
+                newDireccionActionPerformed(evt);
             }
         });
 
-        btnVenta3.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
-        btnVenta3.setText("Nuevo Telefono");
-        btnVenta3.addActionListener(new java.awt.event.ActionListener() {
+        newTelefono.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
+        newTelefono.setText("Nuevo Telefono");
+        newTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVenta3ActionPerformed(evt);
+                newTelefonoActionPerformed(evt);
             }
         });
 
@@ -251,13 +249,13 @@ public class VNewClient extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnVenta2)))
-                                    .addComponent(btnVenta1))
+                                            .addComponent(newDireccion)))
+                                    .addComponent(newCorreo))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnVenta3))))
+                                    .addComponent(newTelefono))))
                         .addGap(30, 30, 30))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -298,9 +296,9 @@ public class VNewClient extends javax.swing.JFrame {
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVenta2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVenta3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(newCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
@@ -324,28 +322,32 @@ public class VNewClient extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVentaActionPerformed
 
     private void correosListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_correosListValueChanged
-        int selected = evt.getFirstIndex();
-        
-        if(selected >= correosList.getModel().getSize() -1){
-            correosList.clearSelection();
-            String newCorreo = JOptionPane.showInputDialog("Ingrese el Correo");
-            if(newCorreo != null && !newCorreo.equals("")){
-                AddElementToModel(correoModel, newCorreo, "Añadir Correo");
-            }
-        }
+
     }//GEN-LAST:event_correosListValueChanged
 
-    private void btnVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenta1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVenta1ActionPerformed
+    private void newCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newCorreoActionPerformed
+        String correo = JOptionPane.showInputDialog("Ingrese un Correo");
+        
+        if(correo != null && !correo.equals("")){
+            AddElementToModel(correoModel, correo);
+        }
+    }//GEN-LAST:event_newCorreoActionPerformed
 
-    private void btnVenta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenta2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVenta2ActionPerformed
+    private void newDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newDireccionActionPerformed
+        String direccion = JOptionPane.showInputDialog("Ingrese una Dirección");
+        
+        if(direccion != null && !direccion.equals("")){
+            AddElementToModel(direccionModel, direccion);
+        }
+    }//GEN-LAST:event_newDireccionActionPerformed
 
-    private void btnVenta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenta3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVenta3ActionPerformed
+    private void newTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newTelefonoActionPerformed
+        String telefono = JOptionPane.showInputDialog("Ingrese un Telefono");
+        
+        if(telefono != null && !telefono.equals("")){
+            AddElementToModel(telefonoModel, telefono);
+        }
+    }//GEN-LAST:event_newTelefonoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -384,9 +386,6 @@ public class VNewClient extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVenta;
-    private javax.swing.JButton btnVenta1;
-    private javax.swing.JButton btnVenta2;
-    private javax.swing.JButton btnVenta3;
     private javax.swing.JList<String> correosList;
     private javax.swing.JList<String> direccionesList;
     private javax.swing.JComboBox<String> jComboBox6;
@@ -408,6 +407,9 @@ public class VNewClient extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
+    private javax.swing.JButton newCorreo;
+    private javax.swing.JButton newDireccion;
+    private javax.swing.JButton newTelefono;
     private javax.swing.JList<String> telefonosList;
     // End of variables declaration//GEN-END:variables
 }
