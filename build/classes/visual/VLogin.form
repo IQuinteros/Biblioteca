@@ -27,15 +27,17 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
               <Component id="btnAccept" min="-2" pref="124" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnAccept1" min="-2" pref="124" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="97" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jLabel2" min="-2" pref="325" max="-2" attributes="0"/>
+                  <Component id="titleLabel" min="-2" pref="325" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="325" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="1" min="-2" pref="324" max="-2" attributes="0"/>
-                  <Component id="jPasswordField1" min="-2" pref="324" max="-2" attributes="0"/>
+                  <Component id="rutLabel" alignment="1" min="-2" pref="324" max="-2" attributes="0"/>
+                  <Component id="passLabel" min="-2" pref="324" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
           </Group>
@@ -47,13 +49,16 @@
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="51" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" pref="37" max="-2" attributes="0"/>
+              <Component id="titleLabel" min="-2" pref="37" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Component id="jTextField1" min="-2" pref="43" max="-2" attributes="0"/>
+              <Component id="rutLabel" min="-2" pref="43" max="-2" attributes="0"/>
               <EmptySpace pref="23" max="32767" attributes="0"/>
-              <Component id="jPasswordField1" min="-2" pref="43" max="-2" attributes="0"/>
+              <Component id="passLabel" min="-2" pref="43" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnAccept" min="-2" pref="36" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnAccept" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="btnAccept1" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -69,20 +74,21 @@
         <Property name="text" type="java.lang.String" value="Iniciar Sesi&#xf3;n de Trabajador"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+    <Component class="javax.swing.JPasswordField" name="passLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+        <Property name="toolTipText" type="java.lang.String" value="Contrase&#xf1;a"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="rutLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Sans" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="191.191.191-5"/>
+        <Property name="horizontalAlignment" type="int" value="2"/>
+        <Property name="toolTipText" type="java.lang.String" value="Ingrese su Rut"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rutLabelActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAccept">
@@ -96,7 +102,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcceptActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="titleLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Sans" size="12" style="0"/>
@@ -104,6 +110,17 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Biblioteca"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAccept1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Sans" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="FastLogin"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAccept1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

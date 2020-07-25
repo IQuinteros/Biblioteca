@@ -5,6 +5,8 @@
  */
 package visual;
 
+import internal.BSession;
+import internal.BUtilities;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import visual.Visores.VClientes;
@@ -22,7 +24,15 @@ public class VHome extends javax.swing.JFrame {
      */
     public VHome() {
         initComponents();
+        
+        try{
+            sessionName.setText(BSession.GetCurrentTrabajador().getFullName());
+        }
+        catch(Exception e){
+            
+        }
     }
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,7 +51,9 @@ public class VHome extends javax.swing.JFrame {
         btnTrabajadores = new javax.swing.JButton();
         btnDistribuidores = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        sessionName = new javax.swing.JMenuItem();
+        closeSession = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("App Biblioteca");
@@ -99,13 +111,26 @@ public class VHome extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("Cerrar Sesión");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+        jMenu2.setText("Cuenta");
+
+        sessionName.setText("sessionName");
+        sessionName.setEnabled(false);
+        sessionName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sessionNameActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenu1);
+        jMenu2.add(sessionName);
+
+        closeSession.setText("Cerrar Sesión");
+        closeSession.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeSessionActionPerformed(evt);
+            }
+        });
+        jMenu2.add(closeSession);
+
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -180,18 +205,6 @@ public class VHome extends javax.swing.JFrame {
         this.setEnabled(true);
     }//GEN-LAST:event_btnVentasActionPerformed
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        
-        VLogin loginPage = new VLogin();
-        
-        loginPage.pack();
-        loginPage.setLocationRelativeTo(null); 
-        
-        loginPage.setVisible(true);
-        
-        this.dispose();
-    }//GEN-LAST:event_jMenu1MouseClicked
-
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         VClientes clientPage = new VClientes();
         clientPage.pack();
@@ -215,6 +228,19 @@ public class VHome extends javax.swing.JFrame {
         distributorPage.setVisible(true);
         this.setEnabled(true);
     }//GEN-LAST:event_btnDistribuidoresActionPerformed
+
+    private void closeSessionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeSessionActionPerformed
+        VLogin loginPage = new VLogin();
+        
+        BUtilities.OpenFrame(loginPage);
+        BSession.CloseSession();
+        
+        this.dispose();
+    }//GEN-LAST:event_closeSessionActionPerformed
+
+    private void sessionNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sessionNameActionPerformed
+
+    }//GEN-LAST:event_sessionNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,8 +273,6 @@ public class VHome extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 VHome home = new VHome();
-               
-                
                 home.setVisible(true);
             }
         });
@@ -262,8 +286,10 @@ public class VHome extends javax.swing.JFrame {
     private javax.swing.JButton btnDistribuidores;
     private javax.swing.JButton btnTrabajadores;
     private javax.swing.JButton btnVentas;
+    private javax.swing.JMenuItem closeSession;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem sessionName;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,12 @@
  */
 package visual.Visores;
 
+import internal.BCliente;
+import internal.BTrabajador;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import visual.VArriendos;
+
 /**
  *
  * @author RemoteUser
@@ -16,6 +22,21 @@ public class VClientes extends javax.swing.JFrame {
      */
     public VClientes() {
         initComponents();
+        
+        InitTrabajadores();
+    }
+    
+    public void InitTrabajadores(){
+        ArrayList<BCliente> clientes = BCliente.GetAllClientes();
+        
+        DefaultListModel model = new DefaultListModel();
+
+        if(clientes.size() > 0){
+            for (int i = 0; i < clientes.size(); i++) {
+                model.addElement(clientes.get(i).getFullNameCode());
+            }
+        }
+        clientsList.setModel(model);
     }
 
     /**
@@ -29,7 +50,9 @@ public class VClientes extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        clientsList = new javax.swing.JList<>();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        addClient = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Clientes");
@@ -38,12 +61,27 @@ public class VClientes extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Clientes");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        clientsList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(clientsList);
+
+        addClient.setText("Nuevo");
+        addClient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addClientMouseClicked(evt);
+            }
+        });
+        addClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addClientActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(addClient);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,11 +104,27 @@ public class VClientes extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClientActionPerformed
+        VNewClient clientPage = new VNewClient();
+        clientPage.pack();
+        clientPage.setLocationRelativeTo(null); 
+        clientPage.setVisible(true);
+        this.setEnabled(true);
+    }//GEN-LAST:event_addClientActionPerformed
+
+    private void addClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addClientMouseClicked
+        VNewClient clientPage = new VNewClient();
+        clientPage.pack();
+        clientPage.setLocationRelativeTo(null); 
+        clientPage.setVisible(true);
+        this.setEnabled(true);
+    }//GEN-LAST:event_addClientMouseClicked
 
     /**
      * @param args the command line arguments
@@ -108,8 +162,10 @@ public class VClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu addClient;
+    private javax.swing.JList<String> clientsList;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

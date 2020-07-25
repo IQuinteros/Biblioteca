@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/internal/BSession.java</file>
+            <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/visual/Visores/visorTrabajadores.java</file>
+            <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/visual/VLogin.java</file>
+            <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/visual/VHome.java</file>
+            <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/internal/BConnector.java</file>
+            <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/internal/BTrabajador.java</file>
+            <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/internal/BUtilities.java</file>
+            <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/biblioteca/index.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -5,6 +5,10 @@
  */
 package visual.Visores;
 
+import internal.BTrabajador;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author joaquin
@@ -16,6 +20,21 @@ public class visorTrabajadores extends javax.swing.JFrame {
      */
     public visorTrabajadores() {
         initComponents();
+        
+        InitTrabajadores();
+    }
+    
+    public void InitTrabajadores(){
+        ArrayList<BTrabajador> trabajadores = BTrabajador.GetAllTrabajadores();
+        
+        DefaultListModel model = new DefaultListModel();
+
+        if(trabajadores.size() > 0){
+            for (int i = 0; i < trabajadores.size(); i++) {
+                model.addElement(trabajadores.get(i).getFullNameCode());
+            }
+        }
+        workersList.setModel(model);
     }
 
     /**
@@ -29,7 +48,7 @@ public class visorTrabajadores extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        workersList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Trabajadores");
@@ -37,12 +56,12 @@ public class visorTrabajadores extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel1.setText("Trabajador");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        workersList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(workersList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,7 +126,7 @@ public class visorTrabajadores extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> workersList;
     // End of variables declaration//GEN-END:variables
 }
