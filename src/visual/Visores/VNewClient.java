@@ -26,11 +26,19 @@ public class VNewClient extends javax.swing.JFrame {
         InitLists();
     }
     
+    BCliente clientRef = null;
+    
+    public VNewClient(String rut){
+        initComponents();
+        
+        InitLists();
+    }
+    
     DefaultListModel correoModel = new DefaultListModel();
     DefaultListModel telefonoModel = new DefaultListModel();
     DefaultListModel direccionModel = new DefaultListModel();
     
-    private void InitLists(){
+    private void InitLists(){        
         UpdateModels();
     }
     
