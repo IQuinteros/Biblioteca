@@ -4,9 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/visual/Visores/VNewClient.java</file>
+            <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/internal/BDistribuidor.java</file>
+            <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/visual/Visores/VDistribuidores.java</file>
             <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/visual/Visores/VClientes.java</file>
+            <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/internal/BTrabajador.java</file>
             <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/internal/BCliente.java</file>
             <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/internal/BUtilities.java</file>
+            <file>file:/C:/Users/RemoteUser/Documents/NetBeansProjects/Biblioteca/src/visual/Visores/VNewDistribuidores.java</file>
         </group>
     </open-files>
 </project-private>
