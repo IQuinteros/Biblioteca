@@ -51,6 +51,7 @@ public class BConnector {
                 return conexion;
             }
         } catch (Exception ex){
+            System.out.println("ERROR BCONNECTOR: " + ex.getMessage());
             return null;
         }
     }
@@ -65,6 +66,7 @@ public class BConnector {
             return true;
         }
         catch(Exception e){
+            System.out.println("ERROR BCONNECTOR: " + e.getMessage());
             return false;
         }
     }
@@ -74,7 +76,7 @@ public class BConnector {
             connectionRef.close();
         }
         catch(Exception e){
-            
+            System.out.println("ERROR BCONNECTOR: " + e.getMessage());
         }
     }
     
@@ -89,6 +91,7 @@ public class BConnector {
             return result;
         }
         catch(Exception e){
+            System.out.println("ERROR BCONNECTOR: " + e.getMessage());
             return null;
         }
     }
@@ -107,6 +110,7 @@ public class BConnector {
             return true;
         }
         catch(Exception e){
+            System.out.println("ERROR BCONNECTOR: " + e.getMessage());
             return false;
         }
     }

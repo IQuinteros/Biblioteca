@@ -18,10 +18,12 @@ public class BTrabajador {
     String nombre;
     String apellidoPaterno;
     String apellidoMaterno;
+
     String password;
     String fechaContratacion;
 
     public BTrabajador(int id, String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String password, String fechaContratacion) {
+
         this.id = id;
         this.rut = rut;
         this.nombre = nombre;

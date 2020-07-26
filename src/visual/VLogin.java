@@ -134,8 +134,10 @@ public class VLogin extends javax.swing.JFrame {
                         BTrabajador trabajador = new BTrabajador(result.getInt("id"), 
                             result.getString("rut"), result.getString("nombre"),
                             result.getString("apellido_paterno"), result.getString("apellido_materno"),
+
                             result.getString("fecha_contratacion"),
                             result.getString("password"));
+
                         BConnector.CloseConnection();
                         
                         BSession.SetCurrentTrabajador(trabajador);
@@ -175,6 +177,7 @@ public class VLogin extends javax.swing.JFrame {
                             result.getString("apellido_paterno"), result.getString("apellido_materno"),
                             result.getString("fecha_contratacion"),
                             result.getString("password"));
+
                     BConnector.CloseConnection();
 
                     BSession.SetCurrentTrabajador(trabajador);
