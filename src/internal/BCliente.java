@@ -88,7 +88,7 @@ public class BCliente {
     
     
     
-    public static boolean AddClient(String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String fechaNacimiento, ArrayList<String> Correos, ArrayList<String> Telefonos, ArrayList<String> Direcciones, boolean checkSizes){
+    public static boolean AddClient(String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String fechaNacimiento, ArrayList<String> Correos, ArrayList<String> Telefonos, ArrayList<String> Direcciones, boolean checkSizes, String customID){
         if(Correos == null || Telefonos == null || Direcciones == null){
             return false;
         }
@@ -104,17 +104,32 @@ public class BCliente {
         
         for (int i = 0; i < Correos.size(); i++) {
             queries.add("INSERT INTO Correo VALUES (NULL, '"+Correos.get(i)+"');");
-            queries.add("INSERT INTO Cliente_Correo VALUES (NULL, (SELECT MAX(id) FROM Cliente), (SELECT MAX(id) FROM Correo));");
+            if(customID != null && !customID.equals("")){
+                queries.add("INSERT INTO Cliente_Correo VALUES (NULL, "+customID+", (SELECT MAX(id) FROM Correo));");
+            }
+            else{
+                queries.add("INSERT INTO Cliente_Correo VALUES (NULL, (SELECT MAX(id) FROM Cliente), (SELECT MAX(id) FROM Correo));");
+            }
         }
         
         for (int i = 0; i < Telefonos.size(); i++) {
             queries.add("INSERT INTO Telefono VALUES (NULL, '"+Telefonos.get(i)+"');");
-            queries.add("INSERT INTO Cliente_Telefono VALUES (NULL, (SELECT MAX(id) FROM Cliente), (SELECT MAX(id) FROM Telefono));");
+            if(customID != null && !customID.equals("")){
+                queries.add("INSERT INTO Cliente_Telefono VALUES (NULL, "+customID+", (SELECT MAX(id) FROM Telefono));");
+            }
+            else{
+                queries.add("INSERT INTO Cliente_Telefono VALUES (NULL, (SELECT MAX(id) FROM Cliente), (SELECT MAX(id) FROM Telefono));");
+            }
         }
         
         for (int i = 0; i < Direcciones.size(); i++) {
             queries.add("INSERT INTO Direccion VALUES (NULL, '"+Direcciones.get(i)+"');");
-            queries.add("INSERT INTO Cliente_Direccion VALUES (NULL, (SELECT MAX(id) FROM Cliente), (SELECT MAX(id) FROM Direccion));");
+            if(customID != null && !customID.equals("")){
+                queries.add("INSERT INTO Cliente_Direccion VALUES (NULL, "+customID+", (SELECT MAX(id) FROM Direccion));");
+            }
+            else{
+                queries.add("INSERT INTO Cliente_Direccion VALUES (NULL, (SELECT MAX(id) FROM Cliente), (SELECT MAX(id) FROM Direccion));");
+            }
         }
         
         return BConnector.ExecuteBatch(queries);

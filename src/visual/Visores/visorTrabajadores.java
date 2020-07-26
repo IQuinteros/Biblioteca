@@ -140,7 +140,7 @@ public class visorTrabajadores extends javax.swing.JFrame {
         });
         jMenuBar1.add(Eliminar);
 
-        Actualizar.setText("ActualizarT");
+        Actualizar.setText("Actualizar Trabajador");
         Actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ActualizarMouseClicked(evt);
@@ -203,9 +203,9 @@ public class visorTrabajadores extends javax.swing.JFrame {
                     
                     int id = Trabajadorid.getInt("id");
                     
-                    deleteQueries.add("DELETE FROM Trabajador_Correo WHERE cliente_id = " + id + ";");
-                    deleteQueries.add("DELETE FROM Trabajador_Direccion WHERE cliente_id = " + id + ";");
-                    deleteQueries.add("DELETE FROM Trabajador_Telefono WHERE cliente_id = " + id + ";");
+                    deleteQueries.add("DELETE FROM Trabajador_Correo WHERE trabajador_id = " + id + ";");
+                    deleteQueries.add("DELETE FROM Trabajador_Direccion WHERE trabajador_id = " + id + ";");
+                    deleteQueries.add("DELETE FROM Trabajador_Telefono WHERE trabajador_id = " + id + ";");
                     
                     deleteQueries.add("DELETE FROM Trabajador WHERE rut = '" + rut + "';");
                     
@@ -235,7 +235,7 @@ public class visorTrabajadores extends javax.swing.JFrame {
             
             try{
                 if(result.next()){
-                    VNewClient clientPage = new VNewClient(rut);
+                    VnewTrabajador clientPage = new VnewTrabajador(rut);
                     clientPage.pack();
                     clientPage.setLocationRelativeTo(null); 
                     clientPage.setVisible(true);

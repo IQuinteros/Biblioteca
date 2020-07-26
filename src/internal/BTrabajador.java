@@ -91,7 +91,7 @@ public class BTrabajador {
         return Telefonos;
     }
     
-     public static boolean AddTrabajador(String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String password, String fechaContratacion, ArrayList<String> Correos, ArrayList<String> Telefonos, ArrayList<String> Direcciones, boolean checkSizes){
+     public static boolean AddTrabajador(String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String password, String fechaContratacion, ArrayList<String> Correos, ArrayList<String> Telefonos, ArrayList<String> Direcciones, boolean checkSizes, String customID){
         if(Correos == null || Telefonos == null || Direcciones == null){
             return false;
         }
@@ -102,22 +102,37 @@ public class BTrabajador {
         
         ArrayList<String> queries = new ArrayList<>();
         
-        queries.add("INSERT INTO Cliente VALUES (NULL, '"+rut+"', '"+nombre+"', '"+apellidoPaterno+"', '"+apellidoMaterno+"','"+password+"' '"+fechaContratacion+"') "
+        queries.add("INSERT INTO Trabajador VALUES (NULL, '"+rut+"', '"+nombre+"', '"+apellidoPaterno+"', '"+apellidoMaterno+"','"+password+"', '"+fechaContratacion+"') "
                 + "ON DUPLICATE KEY UPDATE rut = VALUES(rut), nombre = VALUES(nombre), apellido_paterno = VALUES(apellido_paterno), apellido_materno = VALUES(apellido_materno), password = VALUES(password), fecha_contratacion = VALUES(fecha_contratacion);");
         
         for (int i = 0; i < Correos.size(); i++) {
             queries.add("INSERT INTO Correo VALUES (NULL, '"+Correos.get(i)+"');");
-            queries.add("INSERT INTO Trabajador_Correo VALUES (NULL, (SELECT MAX(id) FROM Trabajador), (SELECT MAX(id) FROM Correo));");
+            if(customID != null && !customID.equals("")){
+                queries.add("INSERT INTO Trabajador_Correo VALUES (NULL, "+customID+", (SELECT MAX(id) FROM Correo));");
+            }
+            else{
+                queries.add("INSERT INTO Trabajador_Correo VALUES (NULL, (SELECT MAX(id) FROM Trabajador), (SELECT MAX(id) FROM Correo));");
+            }
         }
         
         for (int i = 0; i < Telefonos.size(); i++) {
             queries.add("INSERT INTO Telefono VALUES (NULL, '"+Telefonos.get(i)+"');");
-            queries.add("INSERT INTO Trabajador_Telefono VALUES (NULL, (SELECT MAX(id) FROM Trabajador), (SELECT MAX(id) FROM Telefono));");
+            if(customID != null && !customID.equals("")){
+                queries.add("INSERT INTO Trabajador_Telefono VALUES (NULL, "+customID+", (SELECT MAX(id) FROM Telefono));");
+            }
+            else{
+                queries.add("INSERT INTO Trabajador_Telefono VALUES (NULL, (SELECT MAX(id) FROM Trabajador), (SELECT MAX(id) FROM Telefono));");
+            }
         }
         
         for (int i = 0; i < Direcciones.size(); i++) {
             queries.add("INSERT INTO Direccion VALUES (NULL, '"+Direcciones.get(i)+"');");
-            queries.add("INSERT INTO Trabajador_Direccion VALUES (NULL, (SELECT MAX(id) FROM Trabajador), (SELECT MAX(id) FROM Direccion));");
+            if(customID != null && !customID.equals("")){
+                queries.add("INSERT INTO Trabajador_Direccion VALUES (NULL, "+customID+", (SELECT MAX(id) FROM Direccion));");
+            }
+            else{
+                queries.add("INSERT INTO Trabajador_Direccion VALUES (NULL, (SELECT MAX(id) FROM Trabajador), (SELECT MAX(id) FROM Direccion));");
+            }
         }
         
         return BConnector.ExecuteBatch(queries);
@@ -131,11 +146,11 @@ public class BTrabajador {
             {
                 BTrabajador newTrabajador = new BTrabajador(result.getInt("id"), result.getString("rut"), result.getString("nombre"),
                     result.getString("apellido_paterno"), result.getString("apellido_materno"), result.getString("password"),
-                        result.getString("fecha_nacimiento"));
+                        result.getString("fecha_contratacion"));
                 
                 ResultSet correos = BConnector.ExecuteQueryResult("SELECT correo FROM Correo c " +
                     "INNER JOIN Trabajador_Correo rel on rel.correo_id = c.id " +
-                    "INNER JOIN Trabajador cl on cl.id = rel.cliente_id " +
+                    "INNER JOIN Trabajador cl on cl.id = rel.trabajador_id " +
                     "WHERE cl.rut = '"+rut+"'");
                 
                 ArrayList<String> Correos = new ArrayList();
@@ -145,7 +160,7 @@ public class BTrabajador {
                 
                 ResultSet direcciones = BConnector.ExecuteQueryResult("SELECT direccion FROM Direccion c " +
                     "INNER JOIN Trabajador_Direccion rel on rel.direccion_id = c.id " +
-                    "INNER JOIN Trabaajdor cl on cl.id = rel.cliente_id " +
+                    "INNER JOIN Trabajador cl on cl.id = rel.trabajador_id " +
                     "WHERE cl.rut = '"+rut+"'");
                 
                 ArrayList<String> Direcciones = new ArrayList();
@@ -155,7 +170,7 @@ public class BTrabajador {
                 
                 ResultSet telefonos = BConnector.ExecuteQueryResult("SELECT telefono FROM Telefono c " +
                     "INNER JOIN Trabajador_Telefono rel on rel.telefono_id = c.id " +
-                    "INNER JOIN Trabajador cl on cl.id = rel.cliente_id " +
+                    "INNER JOIN Trabajador cl on cl.id = rel.trabajador_id " +
                     "WHERE cl.rut = '"+rut+"'");
                 
                 ArrayList<String> Telefonos = new ArrayList();

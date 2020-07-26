@@ -385,7 +385,7 @@ public class VnewTrabajador extends javax.swing.JFrame {
         
         if(Tref != null){
             if(BTrabajador.AddTrabajador(rutL.getText(), nombre.getText(), apellidoPaterno.getText(), apellidoMaterno.getText(), 
-                    password.getText(), fechaContratacion.getText(), newCorreos, newTelefonos, newDirecciones, false)){
+                    password.getText(), fechaContratacion.getText(), newCorreos, newTelefonos, newDirecciones, false, Integer.toString(Tref.getId()))){
                 JOptionPane.showMessageDialog(null, "Trabajador actualizado");
                 this.dispose();
             }
@@ -395,7 +395,7 @@ public class VnewTrabajador extends javax.swing.JFrame {
             }
         }else{
              if(BTrabajador.AddTrabajador(rutL.getText(), nombre.getText(), apellidoPaterno.getText(), apellidoMaterno.getText(), 
-                    password.getText(), fechaContratacion.getText(), BUtilities.ModelOfStringsToArrayList(correoModel), BUtilities.ModelOfStringsToArrayList(telefonoModel), BUtilities.ModelOfStringsToArrayList(direccionModel), true)){
+                    password.getText(), fechaContratacion.getText(), BUtilities.ModelOfStringsToArrayList(correoModel), BUtilities.ModelOfStringsToArrayList(telefonoModel), BUtilities.ModelOfStringsToArrayList(direccionModel), true, null)){
                 JOptionPane.showMessageDialog(null, "Trabajador añadido");
                 rutL.setText("");
                 nombre.setText("");
@@ -419,6 +419,9 @@ public class VnewTrabajador extends javax.swing.JFrame {
         String correo = JOptionPane.showInputDialog("Ingrese un Correo");
         
         if(correo != null && !correo.equals("")){
+             if(Tref != null){
+                newCorreos.add(correo);
+            }
             AddElementToModel(correoModel, correo);
         }
     }//GEN-LAST:event_newCorreoActionPerformed
@@ -427,6 +430,9 @@ public class VnewTrabajador extends javax.swing.JFrame {
         String direccion = JOptionPane.showInputDialog("Ingrese una Dirección");
         
         if(direccion != null && !direccion.equals("")){
+            if(Tref != null){
+                newDirecciones.add(direccion);
+            }
             AddElementToModel(direccionModel, direccion);
         }
     }//GEN-LAST:event_newDireccionActionPerformed
@@ -435,6 +441,9 @@ public class VnewTrabajador extends javax.swing.JFrame {
         String telefono = JOptionPane.showInputDialog("Ingrese un Telefono");
         
         if(telefono != null && !telefono.equals("")){
+            if(Tref != null){
+                newTelefonos.add(telefono);
+            }
             AddElementToModel(telefonoModel, telefono);
         }
     }//GEN-LAST:event_newTelefonoActionPerformed

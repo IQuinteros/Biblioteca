@@ -394,7 +394,7 @@ public class VNewClient extends javax.swing.JFrame {
         
         if(clientRef != null){
             if(BCliente.AddClient(rutLabel.getText(), nombreLabel.getText(), apellidoPaternoLabel.getText(), apellidoMaternoLabel.getText(), 
-                    fecha, newCorreos, newTelefonos, newDirecciones, false)){
+                    fecha, newCorreos, newTelefonos, newDirecciones, false, Integer.toString(clientRef.getId()))){
                 JOptionPane.showMessageDialog(null, "Cliente actualizado");
                 this.dispose();
             }
@@ -405,7 +405,7 @@ public class VNewClient extends javax.swing.JFrame {
         }// aqui
         else{
             if(BCliente.AddClient(rutLabel.getText(), nombreLabel.getText(), apellidoPaternoLabel.getText(), apellidoMaternoLabel.getText(), 
-                    fecha, BUtilities.ModelOfStringsToArrayList(correoModel), BUtilities.ModelOfStringsToArrayList(telefonoModel), BUtilities.ModelOfStringsToArrayList(direccionModel), true)){
+                    fecha, BUtilities.ModelOfStringsToArrayList(correoModel), BUtilities.ModelOfStringsToArrayList(telefonoModel), BUtilities.ModelOfStringsToArrayList(direccionModel), true, null)){
                 JOptionPane.showMessageDialog(null, "Cliente añadido");
                 rutLabel.setText("");
                 nombreLabel.setText("");
