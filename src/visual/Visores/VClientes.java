@@ -6,9 +6,12 @@
 package visual.Visores;
 
 import internal.BCliente;
+import internal.BConnector;
 import internal.BTrabajador;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import visual.VArriendos;
 
 /**
@@ -53,6 +56,9 @@ public class VClientes extends javax.swing.JFrame {
         clientsList = new javax.swing.JList<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         addClient = new javax.swing.JMenu();
+        btnDelete = new javax.swing.JMenu();
+        updateClient = new javax.swing.JMenu();
+        btnUpdate = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Clientes");
@@ -80,6 +86,25 @@ public class VClientes extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(addClient);
+
+        btnDelete.setText("Eliminar");
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(btnDelete);
+
+        updateClient.setText("Actualizar Cliente");
+        jMenuBar1.add(updateClient);
+
+        btnUpdate.setText("Actualizar Lista");
+        btnUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUpdateMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(btnUpdate);
 
         setJMenuBar(jMenuBar1);
 
@@ -126,6 +151,45 @@ public class VClientes extends javax.swing.JFrame {
         this.setEnabled(true);
     }//GEN-LAST:event_addClientMouseClicked
 
+    private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
+        String rut = JOptionPane.showInputDialog("Ingrese el Rut del cliente a eliminar");
+        if(rut != null && !rut.equals("")){
+            ResultSet clientid = BConnector.ExecuteQueryResult("SELECT id FROM Cliente WHERE rut = '" + rut + "';");
+            
+            try{
+                if(clientid.next()){
+                    ArrayList<String> deleteQueries = new ArrayList();
+                    
+                    int id = clientid.getInt("id");
+                    
+                    deleteQueries.add("DELETE FROM Cliente_Correo WHERE cliente_id = " + id + ";");
+                    deleteQueries.add("DELETE FROM Cliente_Direccion WHERE cliente_id = " + id + ";");
+                    deleteQueries.add("DELETE FROM Cliente_Telefono WHERE cliente_id = " + id + ";");
+                    
+                    deleteQueries.add("DELETE FROM Cliente WHERE rut = '" + rut + "';");
+                    
+                    if(BConnector.ExecuteBatch(deleteQueries)){
+                        JOptionPane.showMessageDialog(null, "Cliente eliminado");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "No se ha encontrado un cliente con ese Rut");
+                    btnDeleteMouseClicked(evt);
+                }
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
+            }
+        }
+    }//GEN-LAST:event_btnDeleteMouseClicked
+
+    private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
+        InitTrabajadores();
+    }//GEN-LAST:event_btnUpdateMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -163,9 +227,12 @@ public class VClientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu addClient;
+    private javax.swing.JMenu btnDelete;
+    private javax.swing.JMenu btnUpdate;
     private javax.swing.JList<String> clientsList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenu updateClient;
     // End of variables declaration//GEN-END:variables
 }

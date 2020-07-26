@@ -20,6 +20,11 @@ public class BCliente {
     String nombre;
     String apellidoPaterno;
     String apellidoMaterno;
+    
+    ArrayList<String> Correos = new ArrayList();
+    ArrayList<String> Direcciones = new ArrayList();
+    ArrayList<String> Telefonos = new ArrayList();
+    
 
     public BCliente(int id, String rut, String nombre, String apellidoPaterno, String apellidoMaterno) {
         this.id = id;
@@ -68,7 +73,8 @@ public class BCliente {
         
         ArrayList<String> queries = new ArrayList<>();
         
-        queries.add("INSERT INTO Cliente VALUES (NULL, '"+rut+"', '"+nombre+"', '"+apellidoPaterno+"', '"+apellidoMaterno+"', '"+fechaNacimiento+"');");
+        queries.add("INSERT INTO Cliente VALUES (NULL, '"+rut+"', '"+nombre+"', '"+apellidoPaterno+"', '"+apellidoMaterno+"', '"+fechaNacimiento+"') "
+                + "ON DUPLICATE KEY UPDATE rut = VALUES(rut), nombre = VALUES(nombre), apellidoPaterno = VALUES(apellidoPaterno), apellidoMaterno = VALUES(apellidoMaterno), fechaNacimiento = VALUES(fechaNacimiento);");
         
         for (int i = 0; i < Correos.size(); i++) {
             queries.add("INSERT INTO Correo VALUES (NULL, '"+Correos.get(i)+"');");
@@ -86,6 +92,23 @@ public class BCliente {
         }
         
         return BConnector.ExecuteBatch(queries);
+    }
+    
+    public static BCliente GetClienteByRut(String rut){
+        ResultSet result = BConnector.ExecuteQueryResult("SELECT * FROM Cliente WHERE rut = '" + rut + "';");
+                
+        try{
+            if(result.next())
+            {
+                return null;
+            }
+            else{
+                return null;
+            }
+        }
+        catch(Exception e){
+            return null;
+        }
     }
     
     public static ArrayList<BCliente> GetAllClientes(){
