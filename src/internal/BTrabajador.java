@@ -18,14 +18,18 @@ public class BTrabajador {
     String nombre;
     String apellidoPaterno;
     String apellidoMaterno;
+
+    String password;
     String fechaContratacion;
 
-    public BTrabajador(int id, String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String fechaContratacion) {
+    public BTrabajador(int id, String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String password, String fechaContratacion) {
+
         this.id = id;
         this.rut = rut;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
+        this.password = password;
         this.fechaContratacion = fechaContratacion;
     }
     
@@ -56,13 +60,17 @@ public class BTrabajador {
     public String getApellidoMaterno() {
         return apellidoMaterno;
     }
+    
+    public String getPassword() {
+        return password;
+    }
 
     public String getFechaContratacion() {
         return fechaContratacion;
     }
     
     public static ArrayList<BTrabajador> GetAllTrabajadores(){
-        ResultSet result = BConnector.ExecuteQueryResult("SELECT id, rut, nombre, apellido_paterno, apellido_materno, fecha_contratacion FROM Trabajador");
+        ResultSet result = BConnector.ExecuteQueryResult("SELECT id, rut, nombre, apellido_paterno, apellido_materno, fecha_contratacion, password FROM Trabajador");
         
         ArrayList<BTrabajador> toReturn = new ArrayList<>();
         
@@ -71,7 +79,8 @@ public class BTrabajador {
                 BTrabajador trabajador = new BTrabajador(result.getInt("id"), 
                             result.getString("rut"), result.getString("nombre"),
                             result.getString("apellido_paterno"), result.getString("apellido_materno"),
-                            result.getString("fecha_contratacion"));
+                            result.getString("fecha_contratacion"),
+                            result.getString("password"));
                 
                 toReturn.add(trabajador);
             }
