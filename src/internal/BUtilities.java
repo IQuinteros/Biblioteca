@@ -45,6 +45,22 @@ public class BUtilities {
         
     }
     
+    public static String getDayFromDate(String date){
+        String[] strings = date.split("-");
+        
+        return strings[0];
+    }
+    public static String getMonthFromDate(String date){
+        String[] strings = date.split("-");
+        
+        return strings[1];
+    }
+    public static String getYearFromDate(String date){
+        String[] strings = date.split("-");
+        
+        return strings[2];
+    }
+    
     public static String DateFormatString(String day, String month, String year){
         
         if(day == null){

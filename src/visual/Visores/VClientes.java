@@ -96,6 +96,11 @@ public class VClientes extends javax.swing.JFrame {
         jMenuBar1.add(btnDelete);
 
         updateClient.setText("Actualizar Cliente");
+        updateClient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateClientMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(updateClient);
 
         btnUpdate.setText("Actualizar Lista");
@@ -189,6 +194,30 @@ public class VClientes extends javax.swing.JFrame {
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
         InitTrabajadores();
     }//GEN-LAST:event_btnUpdateMouseClicked
+
+    private void updateClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateClientMouseClicked
+        String rut = JOptionPane.showInputDialog("Ingrese el Rut para Actualizar");
+        
+        if(rut != null && !rut.equals("")){
+            ResultSet result = BConnector.ExecuteQueryResult("SELECT id FROM Cliente WHERE rut = '"+rut+"'");
+            
+            try{
+                if(result.next()){
+                    VNewClient clientPage = new VNewClient(rut);
+                    clientPage.pack();
+                    clientPage.setLocationRelativeTo(null); 
+                    clientPage.setVisible(true);
+                    this.setEnabled(true);
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Rut no encontrado");
+                }
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
+            }
+        }
+    }//GEN-LAST:event_updateClientMouseClicked
 
     /**
      * @param args the command line arguments

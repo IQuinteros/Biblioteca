@@ -31,6 +31,22 @@ public class VNewClient extends javax.swing.JFrame {
     public VNewClient(String rut){
         initComponents();
         
+        clientRef = BCliente.GetClienteByRut(rut);
+        titleLabel.setText("Cliente: " + clientRef.getFullNameCode());
+        
+        rutLabel.setText(clientRef.getRut());
+        rutLabel.setEnabled(false);
+        
+        nombreLabel.setText(clientRef.getNombre());
+        apellidoPaternoLabel.setText(clientRef.getApellidoPaterno());
+        apellidoMaternoLabel.setText(clientRef.getApellidoMaterno());
+        
+        dayLabel.setSelectedItem(BUtilities.getDayFromDate(clientRef.getFecha()));
+        monthLabel.setSelectedItem(BUtilities.getMonthFromDate(clientRef.getFecha()));
+        yearLabel.setSelectedItem(BUtilities.getYearFromDate(clientRef.getFecha()));
+        
+        btnConfirm.setText("Actualizar");
+        
         InitLists();
     }
     
@@ -38,7 +54,23 @@ public class VNewClient extends javax.swing.JFrame {
     DefaultListModel telefonoModel = new DefaultListModel();
     DefaultListModel direccionModel = new DefaultListModel();
     
-    private void InitLists(){        
+    ArrayList<String> newCorreos = new ArrayList();
+    ArrayList<String> newTelefonos = new ArrayList();
+    ArrayList<String> newDirecciones = new ArrayList();
+    
+    private void InitLists(){     
+        if(clientRef != null){
+            for (int i = 0; i < clientRef.getCorreos().size(); i++) {
+                correoModel.addElement(clientRef.getCorreos().get(i));
+            }
+            for (int i = 0; i < clientRef.getTelefonos().size(); i++) {
+                telefonoModel.addElement(clientRef.getTelefonos().get(i));
+            }
+            for (int i = 0; i < clientRef.getDirecciones().size(); i++) {
+                direccionModel.addElement(clientRef.getDirecciones().get(i));
+            }
+        }
+        
         UpdateModels();
     }
     
@@ -63,7 +95,7 @@ public class VNewClient extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
         rutLabel = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         nombreLabel = new javax.swing.JTextField();
@@ -93,9 +125,9 @@ public class VNewClient extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Añadir Cliente");
 
-        jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Añadir Cliente");
+        titleLabel.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLabel.setText("Añadir Cliente");
 
         rutLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rutLabel.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -218,7 +250,7 @@ public class VNewClient extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(199, 199, 199))
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
@@ -275,7 +307,7 @@ public class VNewClient extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rutLabel)
@@ -360,17 +392,30 @@ public class VNewClient extends javax.swing.JFrame {
             return;
         }
         
-        if(BCliente.AddClient(rutLabel.getText(), nombreLabel.getText(), apellidoPaternoLabel.getText(), apellidoMaternoLabel.getText(), 
-                fecha, BUtilities.ModelOfStringsToArrayList(correoModel), BUtilities.ModelOfStringsToArrayList(telefonoModel), BUtilities.ModelOfStringsToArrayList(direccionModel))){
-            JOptionPane.showMessageDialog(null, "Cliente añadido");
-            rutLabel.setText("");
-            nombreLabel.setText("");
-            apellidoPaternoLabel.setText("");
-            apellidoMaternoLabel.setText("");
+        if(clientRef != null){
+            if(BCliente.AddClient(rutLabel.getText(), nombreLabel.getText(), apellidoPaternoLabel.getText(), apellidoMaternoLabel.getText(), 
+                    fecha, newCorreos, newTelefonos, newDirecciones, false)){
+                JOptionPane.showMessageDialog(null, "Cliente actualizado");
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Se ha producido un error");
+                return; 
+            }
         }
         else{
-            JOptionPane.showMessageDialog(null, "Se ha producido un error");
-            return; 
+            if(BCliente.AddClient(rutLabel.getText(), nombreLabel.getText(), apellidoPaternoLabel.getText(), apellidoMaternoLabel.getText(), 
+                    fecha, BUtilities.ModelOfStringsToArrayList(correoModel), BUtilities.ModelOfStringsToArrayList(telefonoModel), BUtilities.ModelOfStringsToArrayList(direccionModel), true)){
+                JOptionPane.showMessageDialog(null, "Cliente añadido");
+                rutLabel.setText("");
+                nombreLabel.setText("");
+                apellidoPaternoLabel.setText("");
+                apellidoMaternoLabel.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Se ha producido un error");
+                return; 
+            }
         }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
@@ -382,6 +427,9 @@ public class VNewClient extends javax.swing.JFrame {
         String correo = JOptionPane.showInputDialog("Ingrese un Correo");
         
         if(correo != null && !correo.equals("")){
+            if(clientRef != null){
+                newCorreos.add(correo);
+            }
             AddElementToModel(correoModel, correo);
         }
     }//GEN-LAST:event_newCorreoActionPerformed
@@ -390,6 +438,9 @@ public class VNewClient extends javax.swing.JFrame {
         String direccion = JOptionPane.showInputDialog("Ingrese una Dirección");
         
         if(direccion != null && !direccion.equals("")){
+            if(clientRef != null){
+                newDirecciones.add(direccion);
+            }
             AddElementToModel(direccionModel, direccion);
         }
     }//GEN-LAST:event_newDireccionActionPerformed
@@ -398,6 +449,9 @@ public class VNewClient extends javax.swing.JFrame {
         String telefono = JOptionPane.showInputDialog("Ingrese un Telefono");
         
         if(telefono != null && !telefono.equals("")){
+            if(clientRef != null){
+                newTelefonos.add(telefono);
+            }
             AddElementToModel(telefonoModel, telefono);
         }
     }//GEN-LAST:event_newTelefonoActionPerformed
@@ -444,7 +498,6 @@ public class VNewClient extends javax.swing.JFrame {
     private javax.swing.JList<String> correosList;
     private javax.swing.JComboBox<String> dayLabel;
     private javax.swing.JList<String> direccionesList;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -463,6 +516,7 @@ public class VNewClient extends javax.swing.JFrame {
     private javax.swing.JTextField nombreLabel;
     private javax.swing.JTextField rutLabel;
     private javax.swing.JList<String> telefonosList;
+    private javax.swing.JLabel titleLabel;
     private javax.swing.JComboBox<String> yearLabel;
     // End of variables declaration//GEN-END:variables
 }
