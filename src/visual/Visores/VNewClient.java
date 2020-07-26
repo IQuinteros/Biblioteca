@@ -6,6 +6,7 @@
 package visual.Visores;
 
 import internal.BCliente;
+import internal.BUtilities;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -55,18 +56,18 @@ public class VNewClient extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        rutLabel = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
+        nombreLabel = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        apellidoPaternoLabel = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        apellidoMaternoLabel = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
-        jComboBox8 = new javax.swing.JComboBox<>();
-        jComboBox7 = new javax.swing.JComboBox<>();
+        dayLabel = new javax.swing.JComboBox<>();
+        monthLabel = new javax.swing.JComboBox<>();
+        yearLabel = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -76,7 +77,7 @@ public class VNewClient extends javax.swing.JFrame {
         correosList = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         direccionesList = new javax.swing.JList<>();
-        btnVenta = new javax.swing.JButton();
+        btnConfirm = new javax.swing.JButton();
         newCorreo = new javax.swing.JButton();
         newDireccion = new javax.swing.JButton();
         newTelefono = new javax.swing.JButton();
@@ -88,18 +89,17 @@ public class VNewClient extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Añadir Cliente");
 
-        jTextField12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField12.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField12.setText("529.159.159-9");
-        jTextField12.setToolTipText("Ingrese Rut sin puntos ni guión");
+        rutLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rutLabel.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        rutLabel.setToolTipText("Ingrese Rut sin puntos ni guión");
 
         jLabel16.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel16.setText("Rut");
 
-        jTextField13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField13.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField13.setToolTipText("Ingrese Nombre");
+        nombreLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombreLabel.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        nombreLabel.setToolTipText("Ingrese Nombre");
 
         jLabel17.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -109,30 +109,30 @@ public class VNewClient extends javax.swing.JFrame {
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel18.setText("Apellido Paterno");
 
-        jTextField14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField14.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField14.setToolTipText("Ingrese Apellido Paterno");
+        apellidoPaternoLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        apellidoPaternoLabel.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        apellidoPaternoLabel.setToolTipText("Ingrese Apellido Paterno");
 
         jLabel19.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel19.setText("Apellido Materno");
 
-        jTextField15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField15.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField15.setToolTipText("Ingrese Apellido Materno");
+        apellidoMaternoLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        apellidoMaternoLabel.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        apellidoMaternoLabel.setToolTipText("Ingrese Apellido Materno");
 
         jLabel20.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel20.setText("Correos");
 
-        jComboBox6.setEditable(true);
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        dayLabel.setEditable(true);
+        dayLabel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
 
-        jComboBox8.setEditable(true);
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        monthLabel.setEditable(true);
+        monthLabel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
 
-        jComboBox7.setEditable(true);
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1999" }));
+        yearLabel.setEditable(true);
+        yearLabel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020" }));
 
         jLabel21.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -172,11 +172,11 @@ public class VNewClient extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(direccionesList);
 
-        btnVenta.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
-        btnVenta.setText("Añadir Cliente");
-        btnVenta.addActionListener(new java.awt.event.ActionListener() {
+        btnConfirm.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        btnConfirm.setText("Añadir Cliente");
+        btnConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVentaActionPerformed(evt);
+                btnConfirmActionPerformed(evt);
             }
         });
 
@@ -217,16 +217,16 @@ public class VNewClient extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnVenta)
+                        .addComponent(btnConfirm)
                         .addGap(264, 264, 264))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(monthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(yearLabel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,10 +235,10 @@ public class VNewClient extends javax.swing.JFrame {
                                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(rutLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nombreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(apellidoPaternoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(apellidoMaternoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -270,25 +270,25 @@ public class VNewClient extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField12)
+                    .addComponent(rutLabel)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField13)
+                    .addComponent(nombreLabel)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField14)
+                    .addComponent(apellidoPaternoLabel)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField15)
+                    .addComponent(apellidoMaternoLabel)
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(yearLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(monthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -305,7 +305,7 @@ public class VNewClient extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1))
                 .addGap(18, 18, 18)
-                .addComponent(btnVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -317,9 +317,54 @@ public class VNewClient extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
-
-    }//GEN-LAST:event_btnVentaActionPerformed
+    private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
+        boolean incomplete = false;
+        if(rutLabel.getText().equals("")){
+            incomplete = true;
+        }
+        if(nombreLabel.getText().equals("")){
+            incomplete = true;
+        }
+        if(apellidoPaternoLabel.getText().equals("")){
+            incomplete = true;
+        }
+        if(apellidoMaternoLabel.getText().equals("")){
+            incomplete = true;
+        }
+        if(((String)dayLabel.getSelectedItem()).equals("")){
+            incomplete = true;
+        }
+        if(((String)monthLabel.getSelectedItem()).equals("")){
+            incomplete = true;
+        }
+        if(((String)yearLabel.getSelectedItem()).equals("")){
+            incomplete = true;
+        }
+        
+        if(correoModel.getSize() <= 0 || telefonoModel.getSize() <= 0 || direccionModel.getSize() <= 0){
+            incomplete = true;
+        }
+        
+        String fecha = BUtilities.DateFormatString((String)dayLabel.getSelectedItem(), (String)monthLabel.getSelectedItem(), (String)yearLabel.getSelectedItem());
+        
+        if(incomplete){
+            JOptionPane.showMessageDialog(null, "Datos incompletos");
+            return;
+        }
+        
+        if(BCliente.AddClient(rutLabel.getText(), nombreLabel.getText(), apellidoPaternoLabel.getText(), apellidoMaternoLabel.getText(), 
+                fecha, BUtilities.ModelOfStringsToArrayList(correoModel), BUtilities.ModelOfStringsToArrayList(telefonoModel), BUtilities.ModelOfStringsToArrayList(direccionModel))){
+            JOptionPane.showMessageDialog(null, "Cliente añadido");
+            rutLabel.setText("");
+            nombreLabel.setText("");
+            apellidoPaternoLabel.setText("");
+            apellidoMaternoLabel.setText("");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Se ha producido un error");
+            return; 
+        }
+    }//GEN-LAST:event_btnConfirmActionPerformed
 
     private void correosListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_correosListValueChanged
 
@@ -385,12 +430,12 @@ public class VNewClient extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnVenta;
+    private javax.swing.JTextField apellidoMaternoLabel;
+    private javax.swing.JTextField apellidoPaternoLabel;
+    private javax.swing.JButton btnConfirm;
     private javax.swing.JList<String> correosList;
+    private javax.swing.JComboBox<String> dayLabel;
     private javax.swing.JList<String> direccionesList;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -403,13 +448,13 @@ public class VNewClient extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
+    private javax.swing.JComboBox<String> monthLabel;
     private javax.swing.JButton newCorreo;
     private javax.swing.JButton newDireccion;
     private javax.swing.JButton newTelefono;
+    private javax.swing.JTextField nombreLabel;
+    private javax.swing.JTextField rutLabel;
     private javax.swing.JList<String> telefonosList;
+    private javax.swing.JComboBox<String> yearLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,9 +18,9 @@ public class BTrabajador {
     String nombre;
     String apellidoPaterno;
     String apellidoMaterno;
-    Date fechaContratacion;
+    String fechaContratacion;
 
-    public BTrabajador(int id, String rut, String nombre, String apellidoPaterno, String apellidoMaterno, Date fechaContratacion) {
+    public BTrabajador(int id, String rut, String nombre, String apellidoPaterno, String apellidoMaterno, String fechaContratacion) {
         this.id = id;
         this.rut = rut;
         this.nombre = nombre;
@@ -57,7 +57,7 @@ public class BTrabajador {
         return apellidoMaterno;
     }
 
-    public Date getFechaContratacion() {
+    public String getFechaContratacion() {
         return fechaContratacion;
     }
     
@@ -71,7 +71,7 @@ public class BTrabajador {
                 BTrabajador trabajador = new BTrabajador(result.getInt("id"), 
                             result.getString("rut"), result.getString("nombre"),
                             result.getString("apellido_paterno"), result.getString("apellido_materno"),
-                            result.getDate("fecha_contratacion"));
+                            result.getString("fecha_contratacion"));
                 
                 toReturn.add(trabajador);
             }
