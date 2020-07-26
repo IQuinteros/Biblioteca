@@ -120,8 +120,6 @@ public class BCliente {
         return BConnector.ExecuteBatch(queries);
     }
     
-   
-    
     public static BCliente GetClienteByRut(String rut){//copiar y pegar, para buscar clientes y obtener todos sus datos, para 1 solo , hacer esto con los trabajadores
         ResultSet result = BConnector.ExecuteQueryResult("SELECT * FROM Cliente WHERE rut = '" + rut + "';");
                 

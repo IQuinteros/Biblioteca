@@ -26,10 +26,10 @@ public class VClientes extends javax.swing.JFrame {
     public VClientes() {
         initComponents();
         
-        InitTrabajadores();
+        InitClientes();
     }
     
-    public void InitTrabajadores(){
+    public void InitClientes(){
         ArrayList<BCliente> clientes = BCliente.GetAllClientes();
         
         DefaultListModel model = new DefaultListModel();
@@ -192,7 +192,7 @@ public class VClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteMouseClicked
 
     private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
-        InitTrabajadores();
+        InitClientes();
     }//GEN-LAST:event_btnUpdateMouseClicked
 
     private void updateClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateClientMouseClicked
