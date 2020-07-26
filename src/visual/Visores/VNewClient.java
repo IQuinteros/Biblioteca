@@ -20,7 +20,7 @@ public class VNewClient extends javax.swing.JFrame {
     /**
      * Creates new form VNewClient
      */
-    public VNewClient() {
+    public VNewClient() {//Adaptar a trabajador
         initComponents();
         
         InitLists();
@@ -84,7 +84,7 @@ public class VNewClient extends javax.swing.JFrame {
         modelRef.addElement(value);
         
         UpdateModels();
-    }
+    }//Adaptar a trabajador
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -390,7 +390,7 @@ public class VNewClient extends javax.swing.JFrame {
         if(incomplete){
             JOptionPane.showMessageDialog(null, "Datos incompletos");
             return;
-        }
+        }//validacion
         
         if(clientRef != null){
             if(BCliente.AddClient(rutLabel.getText(), nombreLabel.getText(), apellidoPaternoLabel.getText(), apellidoMaternoLabel.getText(), 
@@ -402,7 +402,7 @@ public class VNewClient extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Se ha producido un error");
                 return; 
             }
-        }
+        }// aqui
         else{
             if(BCliente.AddClient(rutLabel.getText(), nombreLabel.getText(), apellidoPaternoLabel.getText(), apellidoMaternoLabel.getText(), 
                     fecha, BUtilities.ModelOfStringsToArrayList(correoModel), BUtilities.ModelOfStringsToArrayList(telefonoModel), BUtilities.ModelOfStringsToArrayList(direccionModel), true)){
@@ -415,7 +415,7 @@ public class VNewClient extends javax.swing.JFrame {
             else{
                 JOptionPane.showMessageDialog(null, "Se ha producido un error");
                 return; 
-            }
+            }//aqui
         }
     }//GEN-LAST:event_btnConfirmActionPerformed
 

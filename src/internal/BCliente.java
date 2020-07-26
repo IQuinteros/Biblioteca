@@ -92,7 +92,7 @@ public class BCliente {
         if(Correos == null || Telefonos == null || Direcciones == null){
             return false;
         }
-        
+        // copiar, pegar pero cambiando las consultas sql, esto es para añadir los distintos correos de los clientes, direccioes y telefonos etc... , hacer esto pa los trabajadores
         if(checkSizes && (Correos.size() <= 0 || Telefonos.size() <= 0 || Direcciones.size() <= 0)){
             return false;
         }
@@ -120,36 +120,9 @@ public class BCliente {
         return BConnector.ExecuteBatch(queries);
     }
     
-    public boolean AddCorreosTelefonosDirecciones(ArrayList<String> Correos, ArrayList<String> Telefonos, ArrayList<String> Direcciones){
-        if(Correos == null || Telefonos == null || Direcciones == null){
-            return false;
-        }
-        
-        if(Correos.size() <= 0 || Telefonos.size() <= 0 || Direcciones.size() <= 0){
-            return false;
-        }
-        
-        ArrayList<String> queries = new ArrayList<>();
-        
-        for (int i = 0; i < Correos.size(); i++) {
-            queries.add("INSERT INTO Correo VALUES (NULL, '"+Correos.get(i)+"');");
-            queries.add("INSERT INTO Cliente_Correo VALUES (NULL, "+id+", (SELECT MAX(id) FROM Correo));");
-        }
-        
-        for (int i = 0; i < Telefonos.size(); i++) {
-            queries.add("INSERT INTO Telefono VALUES (NULL, '"+Telefonos.get(i)+"');");
-            queries.add("INSERT INTO Cliente_Telefono VALUES (NULL, "+id+", (SELECT MAX(id) FROM Telefono));");
-        }
-        
-        for (int i = 0; i < Direcciones.size(); i++) {
-            queries.add("INSERT INTO Direccion VALUES (NULL, '"+Direcciones.get(i)+"');");
-            queries.add("INSERT INTO Cliente_Direccion VALUES (NULL, "+id+", (SELECT MAX(id) FROM Direccion));");
-        }
-        
-        return BConnector.ExecuteBatch(queries);
-    }
+   
     
-    public static BCliente GetClienteByRut(String rut){
+    public static BCliente GetClienteByRut(String rut){//copiar y pegar, para buscar clientes y obtener todos sus datos, para 1 solo , hacer esto con los trabajadores
         ResultSet result = BConnector.ExecuteQueryResult("SELECT * FROM Cliente WHERE rut = '" + rut + "';");
                 
         try{

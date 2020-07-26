@@ -157,7 +157,7 @@ public class VClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_addClientMouseClicked
 
     private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
-        String rut = JOptionPane.showInputDialog("Ingrese el Rut del cliente a eliminar");
+        String rut = JOptionPane.showInputDialog("Ingrese el Rut del cliente a eliminar");//agregar boton de eliminar
         if(rut != null && !rut.equals("")){
             ResultSet clientid = BConnector.ExecuteQueryResult("SELECT id FROM Cliente WHERE rut = '" + rut + "';");
             
@@ -196,7 +196,7 @@ public class VClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateMouseClicked
 
     private void updateClientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateClientMouseClicked
-        String rut = JOptionPane.showInputDialog("Ingrese el Rut para Actualizar");
+        String rut = JOptionPane.showInputDialog("Ingrese el Rut para Actualizar");//agregar actualizacion
         
         if(rut != null && !rut.equals("")){
             ResultSet result = BConnector.ExecuteQueryResult("SELECT id FROM Cliente WHERE rut = '"+rut+"'");

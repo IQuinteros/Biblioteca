@@ -35,7 +35,7 @@ public class BUtilities {
     }
     
     public static ArrayList<String> ModelOfStringsToArrayList(DefaultListModel modelRef){
-        
+        //ksnhfklashf ordenar listas
         ArrayList<String> toReturn = new ArrayList();
         for (int i = 0; i < modelRef.getSize(); i++) {
             toReturn.add((String)modelRef.get(i));
@@ -89,7 +89,7 @@ public class BUtilities {
             if(year.length() == 2){
                 String preYear = year;
                 year = "20";
-                year += "preYear";
+                year += preYear;
             }
             
             return day + "-" + month + "-" + year;

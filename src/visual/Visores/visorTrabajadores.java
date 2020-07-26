@@ -5,9 +5,11 @@
  */
 package visual.Visores;
 
-import internal.BTrabajador;
+import internal.*;
+import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -46,11 +48,68 @@ public class visorTrabajadores extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuBar3 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuBar4 = new javax.swing.JMenuBar();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuBar5 = new javax.swing.JMenuBar();
+        jMenu7 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuBar6 = new javax.swing.JMenuBar();
+        jMenu9 = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
+        jMenu12 = new javax.swing.JMenu();
+        jMenu11 = new javax.swing.JMenu();
+        jMenu13 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         workersList = new javax.swing.JList<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         NuevoT = new javax.swing.JMenu();
+        Eliminar = new javax.swing.JMenu();
+        Actualizar = new javax.swing.JMenu();
+        ActualizaL = new javax.swing.JMenu();
+
+        jMenu1.setText("File");
+        jMenuBar2.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar2.add(jMenu2);
+
+        jMenu3.setText("File");
+        jMenuBar3.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar3.add(jMenu4);
+
+        jMenu5.setText("File");
+        jMenuBar4.add(jMenu5);
+
+        jMenu6.setText("Edit");
+        jMenuBar4.add(jMenu6);
+
+        jMenu7.setText("File");
+        jMenuBar5.add(jMenu7);
+
+        jMenu8.setText("Edit");
+        jMenuBar5.add(jMenu8);
+
+        jMenu9.setText("File");
+        jMenuBar6.add(jMenu9);
+
+        jMenu10.setText("Edit");
+        jMenuBar6.add(jMenu10);
+
+        jMenu12.setText("jMenu12");
+
+        jMenu11.setText("jMenu11");
+
+        jMenu13.setText("jMenu13");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Trabajadores");
@@ -72,6 +131,30 @@ public class visorTrabajadores extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(NuevoT);
+
+        Eliminar.setText("Eliminar");
+        Eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EliminarMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(Eliminar);
+
+        Actualizar.setText("ActualizarT");
+        Actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ActualizarMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(Actualizar);
+
+        ActualizaL.setText("Actualizar Lista");
+        ActualizaL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ActualizaLMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(ActualizaL);
 
         setJMenuBar(jMenuBar1);
 
@@ -109,6 +192,69 @@ public class visorTrabajadores extends javax.swing.JFrame {
         this.setEnabled(true);
     }//GEN-LAST:event_NuevoTMouseClicked
 
+    private void EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarMouseClicked
+        String rut = JOptionPane.showInputDialog("Ingrese el Rut del trabajador a eliminar");//agregar boton de eliminar
+        if(rut != null && !rut.equals("")){
+            ResultSet Trabajadorid = BConnector.ExecuteQueryResult("SELECT id FROM Trabajador WHERE rut = '" + rut + "';");
+            
+            try{
+                if(Trabajadorid.next()){
+                    ArrayList<String> deleteQueries = new ArrayList();
+                    
+                    int id = Trabajadorid.getInt("id");
+                    
+                    deleteQueries.add("DELETE FROM Trabajador_Correo WHERE cliente_id = " + id + ";");
+                    deleteQueries.add("DELETE FROM Trabajador_Direccion WHERE cliente_id = " + id + ";");
+                    deleteQueries.add("DELETE FROM Trabajador_Telefono WHERE cliente_id = " + id + ";");
+                    
+                    deleteQueries.add("DELETE FROM Trabajador WHERE rut = '" + rut + "';");
+                    
+                    if(BConnector.ExecuteBatch(deleteQueries)){
+                        JOptionPane.showMessageDialog(null, "Trabajador eliminado");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "No se ha encontrado un trabajador con ese Rut");
+                    EliminarMouseClicked(evt);
+                }
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
+            }
+        }
+    }//GEN-LAST:event_EliminarMouseClicked
+
+    private void ActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ActualizarMouseClicked
+         String rut = JOptionPane.showInputDialog("Ingrese el Rut para Actualizar");//agregar actualizacion
+        
+        if(rut != null && !rut.equals("")){
+            ResultSet result = BConnector.ExecuteQueryResult("SELECT id FROM Trabajador WHERE rut = '"+rut+"'");
+            
+            try{
+                if(result.next()){
+                    VNewClient clientPage = new VNewClient(rut);
+                    clientPage.pack();
+                    clientPage.setLocationRelativeTo(null); 
+                    clientPage.setVisible(true);
+                    this.setEnabled(true);
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Rut no encontrado");
+                }
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
+            }
+        }
+    }//GEN-LAST:event_ActualizarMouseClicked
+
+    private void ActualizaLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ActualizaLMouseClicked
+        InitTrabajadores();
+    }//GEN-LAST:event_ActualizaLMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -145,9 +291,30 @@ public class visorTrabajadores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu ActualizaL;
+    private javax.swing.JMenu Actualizar;
+    private javax.swing.JMenu Eliminar;
     private javax.swing.JMenu NuevoT;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
+    private javax.swing.JMenu jMenu12;
+    private javax.swing.JMenu jMenu13;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuBar jMenuBar3;
+    private javax.swing.JMenuBar jMenuBar4;
+    private javax.swing.JMenuBar jMenuBar5;
+    private javax.swing.JMenuBar jMenuBar6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> workersList;
     // End of variables declaration//GEN-END:variables

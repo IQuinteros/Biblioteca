@@ -5,11 +5,11 @@
  */
 package visual.Visores;
 
-import internal.BCliente;
-import java.util.ArrayList;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import internal.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,12 +25,48 @@ public class VnewTrabajador extends javax.swing.JFrame {
         
         InitLists();
     }
+    BTrabajador Tref = null;
+    
+    public VnewTrabajador(String rut){
+        initComponents();
+        
+        Tref = BTrabajador.GetTrabajadorByRut(rut);
+        jLabel1.setText("Trabajador: " + Tref.getFullNameCode());
+        
+        rutL.setText(Tref.getRut());
+        rutL.setEnabled(false);
+        
+        nombre.setText(Tref.getNombre());
+        apellidoPaterno.setText(Tref.getApellidoPaterno());
+        apellidoMaterno.setText(Tref.getApellidoMaterno());
+        password.setText(Tref.getPassword());
+        fechaContratacion.setText(Tref.getFechaContratacion());
+        
+        AñadirT.setText("Actualizar");
+        
+        InitLists();
+    }
     
     DefaultListModel correoModel = new DefaultListModel();
     DefaultListModel telefonoModel = new DefaultListModel();
     DefaultListModel direccionModel = new DefaultListModel();
     
+    ArrayList<String> newCorreos = new ArrayList();
+    ArrayList<String> newTelefonos = new ArrayList();
+    ArrayList<String> newDirecciones = new ArrayList();
+    
     private void InitLists(){
+        if(Tref != null){
+            for (int i = 0; i < Tref.getCorreos().size(); i++) {
+                correoModel.addElement(Tref.getCorreos().get(i));
+            }
+            for (int i = 0; i < Tref.getTelefonos().size(); i++) {
+                telefonoModel.addElement(Tref.getTelefonos().get(i));
+            }
+            for (int i = 0; i < Tref.getDirecciones().size(); i++) {
+                direccionModel.addElement(Tref.getDirecciones().get(i));
+            }
+        }
         UpdateModels();
     }
     
@@ -56,7 +92,7 @@ public class VnewTrabajador extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        rut = new javax.swing.JTextField();
+        rutL = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         nombre = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
@@ -89,10 +125,10 @@ public class VnewTrabajador extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Añadir Trabajador");
 
-        rut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        rut.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        rut.setText("529.159.159-9");
-        rut.setToolTipText("Ingrese Rut sin puntos ni guión");
+        rutL.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rutL.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        rutL.setText("529.159.159-9");
+        rutL.setToolTipText("Ingrese Rut sin puntos ni guión");
 
         jLabel16.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -255,7 +291,7 @@ public class VnewTrabajador extends javax.swing.JFrame {
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(rut, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                                    .addComponent(rutL, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                                     .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                                     .addComponent(apellidoPaterno, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                                     .addComponent(apellidoMaterno, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
@@ -270,9 +306,9 @@ public class VnewTrabajador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rut)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rutL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nombre)
@@ -318,8 +354,60 @@ public class VnewTrabajador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AñadirTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirTActionPerformed
-               BConnector.ExecuteQuery("INSERT INTO `azeak623_biblioteca`.`Trabajador` (`rut`, `nombre`, `apellido_paterno`, `apellido_materno`, `password`, `fecha_contratacion`) VALUES ('"+rut.getText()+"','"+nombre.getText()+"','"+apellidoPaterno.getText()+"','"+apellidoMaterno.getText()+"','"+password.getText()+"','"+fechaContratacion.getText()+"');");
-               JOptionPane.showMessageDialog(null, "Trabajador ingresado exitosamente");
+         boolean incomplete = false;
+        if(rutL.getText().equals("")){
+            incomplete = true;
+        }
+        if(nombre.getText().equals("")){
+            incomplete = true;
+        }
+        if(apellidoPaterno.getText().equals("")){
+            incomplete = true;
+        }
+        if(apellidoMaterno.getText().equals("")){
+            incomplete = true;
+        }
+        if(password.getText().equals("")){
+            incomplete = true;
+        }
+        
+        if(fechaContratacion.getText().equals("")){
+            incomplete = true;
+        }
+        
+        if(correoModel.getSize() <= 0 || telefonoModel.getSize() <= 0 || direccionModel.getSize() <= 0){
+            incomplete = true;
+        }
+        if(incomplete){
+            JOptionPane.showMessageDialog(null, "Datos incompletos");
+            return;
+        }//validacion  
+        
+        if(Tref != null){
+            if(BTrabajador.AddTrabajador(rutL.getText(), nombre.getText(), apellidoPaterno.getText(), apellidoMaterno.getText(), 
+                    password.getText(), fechaContratacion.getText(), newCorreos, newTelefonos, newDirecciones, false)){
+                JOptionPane.showMessageDialog(null, "Trabajador actualizado");
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Se ha producido un error");
+                return; 
+            }
+        }else{
+             if(BTrabajador.AddTrabajador(rutL.getText(), nombre.getText(), apellidoPaterno.getText(), apellidoMaterno.getText(), 
+                    password.getText(), fechaContratacion.getText(), BUtilities.ModelOfStringsToArrayList(correoModel), BUtilities.ModelOfStringsToArrayList(telefonoModel), BUtilities.ModelOfStringsToArrayList(direccionModel), true)){
+                JOptionPane.showMessageDialog(null, "Trabajador añadido");
+                rutL.setText("");
+                nombre.setText("");
+                apellidoPaterno.setText("");
+                apellidoMaterno.setText("");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Se ha producido un error");
+                return; 
+            }//aqui
+        }
+        
                        
     }//GEN-LAST:event_AñadirTActionPerformed
 
@@ -416,7 +504,7 @@ public class VnewTrabajador extends javax.swing.JFrame {
     private javax.swing.JButton newTelefono;
     private javax.swing.JTextField nombre;
     private javax.swing.JPasswordField password;
-    private javax.swing.JTextField rut;
+    private javax.swing.JTextField rutL;
     private javax.swing.JList<String> telefonosList;
     // End of variables declaration//GEN-END:variables
 }
